@@ -45,6 +45,6 @@ else
 fi
 
 
-full_url=git@$url:$username/$repo
+full_url=git@$url:$username/$repo.git
 
-git remote set-url $full_url
+git remote set-url $origin $full_url
