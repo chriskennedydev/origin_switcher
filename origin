@@ -1,0 +1,50 @@
+#!/bin/bash
+
+set -e
+
+### For easily switching origin endpoints
+### NOTE: This script is dependent on you having SSH setup on your remote repository
+
+function usage() {
+  printf "usage: origin user endpoint [origin]\n"
+  printf "examples below:\n"
+  printf "\n"
+  printf "origin ckdev gitlab\n"
+  printf "origin ckhax github\n"
+  printf "origin chris gitea trunk\n"
+}
+
+
+username=$1
+url=$2
+origin=$3
+repo=${PWD##*/}
+
+
+if [ -z $username ]; then
+  usage
+  exit 1
+fi
+
+if [ -z $url ]; then
+  usage
+  exit 1
+fi
+
+if [ -z $origin ]; then
+  origin="origin"
+fi
+
+printf "Do you want to save info? "
+read save
+
+if [ "$save" == "y" ]; then
+  printf "TODO: create dir/file for saving origin info\n"
+else
+  printf "TODO: just change origin\n"
+fi
+
+
+full_url=git@$url:$username/$repo
+
+git remote set-url $full_url
